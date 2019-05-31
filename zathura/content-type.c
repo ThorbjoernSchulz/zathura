@@ -14,6 +14,8 @@
 #include <glib.h>
 #include <gio/gio.h>
 
+gchar *forced_type = NULL;
+
 struct zathura_content_type_context_s
 {
 #ifdef WITH_MAGIC
@@ -86,14 +88,13 @@ guess_type_magic(zathura_content_type_context_t* context, const char* path)
     return NULL;
   }
 
-  const char* mime_type = NULL;
-
   /* get the mime type */
-  mime_type = magic_file(context->magic, path);
+  const char* mime_type = forced_type ? forced_type : magic_file(context->magic, path);
   if (mime_type == NULL) {
     girara_debug("failed guessing filetype: %s", magic_error(context->magic));
     return NULL;
   }
+
   girara_debug("magic detected filetype: %s", mime_type);
 
   char* content_type = g_content_type_from_mime_type(mime_type);

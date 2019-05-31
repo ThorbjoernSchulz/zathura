@@ -117,6 +117,7 @@ init_zathura(const char* config_dir, const char* data_dir,
   return zathura;
 }
 
+extern gchar *forced_type;
 
 /* main function */
 GIRARA_VISIBLE int
@@ -144,6 +145,7 @@ main(int argc, char* argv[])
   Window embed          = 0;
 
   GOptionEntry entries[] = {
+    { "force-type",             'f',  0, G_OPTION_ARG_STRING,   &forced_type,    _("Forces file-type to given type as returned by file."), "string"  },
     { "reparent",               'e',  0, G_OPTION_ARG_INT,      &embed,          _("Reparents to window specified by xid (X11)"),        "xid"  },
     { "config-dir",             'c',  0, G_OPTION_ARG_FILENAME, &config_dir,     _("Path to the config directory"),                      "path" },
     { "data-dir",               'd',  0, G_OPTION_ARG_FILENAME, &data_dir,       _("Path to the data directory"),                        "path" },
