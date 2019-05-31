@@ -4,6 +4,12 @@ zathura - a document viewer
 zathura is a highly customizable and functional document viewer based on the
 girara user interface library and several document libraries.
 
+What is different in this fork?
+-------------------------------
+Zathura, or rather libmagic, has problems identifing polyglot pdfs correctly.
+I added an option --force-type=TYPE so a user can enforce for example application/pdf,
+in case the library fails to deliver.
+
 Requirements
 ------------
 
